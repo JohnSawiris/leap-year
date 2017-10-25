@@ -1,17 +1,26 @@
+// backend logic
+var isLeapYear = function(year) {
+  if ((year % 4 === 0) && (year % 100 !== 0) || (year % 400 === 0)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 $(document).ready(function() {
   $("form#year").submit(function(event) {
     event.preventDefault();
-
     var userYear = parseInt($("#inputYear").val());
+    var result = isLeapYear(userYear);
 
-    var isLeapYear = function(year) {
-      if ((year % 4 === 0) && (year % 100 !== 0) || (year % 400 === 0)) {
-        console.log("hello I'm 4");
-      }
-      else {
-        return false;
-      }
+    //front end logic
+    if (!result) {
+      $(".not").show();
+    }else {
+      $(".not").hide();
     }
-    console.log(isLeapYear(userYear));
+
+    $("#result").show();
   });
 });
